@@ -36,6 +36,7 @@ public class PlayerNameManager {
     }
 
     public PlayerName getPlayer(UUID uuid) {
+        if (!map.containsKey(uuid)) return null;
         return map.get(uuid);
     }
 
