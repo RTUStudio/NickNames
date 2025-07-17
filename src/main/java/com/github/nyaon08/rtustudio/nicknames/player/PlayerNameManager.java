@@ -28,7 +28,6 @@ public class PlayerNameManager {
     public void addPlayer(Player player) {
         PlayerName playerName = new PlayerName(plugin, player);
         map.put(player.getUniqueId(), playerName);
-
     }
 
     public void removePlayer(Player player) {
