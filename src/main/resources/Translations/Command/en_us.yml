@@ -1,5 +1,5 @@
 nickname:
   name: "nickname"
-
-change:
-  name: "change"
+  commands:
+    change:
+      name: "change"

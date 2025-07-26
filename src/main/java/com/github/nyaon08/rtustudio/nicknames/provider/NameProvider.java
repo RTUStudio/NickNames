@@ -31,7 +31,8 @@ public class NameProvider implements kr.rtuserver.framework.bukkit.api.core.prov
             if (scope == Scope.CURRENT_SERVER) {
                 if (player.getPlayer() == null) continue;
             }
-            result.add("@" + player.getName());
+            if (!player.getName().isEmpty())
+                result.add("@" + player.getName());
             result.add(player.getPlayer().getName());
         }
         return result;
