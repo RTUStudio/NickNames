@@ -6,9 +6,11 @@ import com.github.nyaon08.rtustudio.nicknames.player.PlayerNameManager;
 import kr.rtuserver.framework.bukkit.api.command.RSCommand;
 import kr.rtuserver.framework.bukkit.api.command.RSCommandData;
 import kr.rtuserver.framework.bukkit.api.configuration.translation.message.MessageTranslation;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.List;
+import java.util.UUID;
 
 public class NickCommand extends RSCommand<NickNames> {
 
@@ -35,11 +37,12 @@ public class NickCommand extends RSCommand<NickNames> {
             }
 
         } else if (data.length(3) && hasPermission(getPlugin().getName() + ".nickname.change.other")) {
-            Player target = provider().getPlayer(data.args(2));
-            if (target == null) {
+            UUID targetUuid = provider().getUniqueId(data.args(2));
+            if (targetUuid == null) {
                 return true;
             }
-            PlayerName playerName = playerNameManager.getPlayer(target.getUniqueId());
+            Player target = getPlugin().getServer().getPlayer(targetUuid);
+            PlayerName playerName = playerNameManager.getPlayer(targetUuid);
             playerName.changeName(player(), target, data.args(1));
             return true;
         }
@@ -49,7 +52,7 @@ public class NickCommand extends RSCommand<NickNames> {
     @Override
     public List<String> tabComplete(RSCommandData data) {
         if (data.length(3) && hasPermission(getPlugin().getName() + ".nickname.change.other")) {
-            return provider().getNames();
+            return provider().names();
         }
         return List.of();
     }

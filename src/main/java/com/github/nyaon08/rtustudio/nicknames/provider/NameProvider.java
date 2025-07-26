@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,33 +25,22 @@ public class NameProvider implements kr.rtuserver.framework.bukkit.api.core.prov
         this.pnm = plugin.getPlayerNameManager();
     }
 
-    public List<String> getNames() {
+    public @NotNull List<String> names(Scope scope) {
         List<String> result = new ArrayList<>();
         for (PlayerName player : pnm.getPlayers()) {
+            if (scope == Scope.CURRENT_SERVER) {
+                if (player.getPlayer() == null) continue;
+            }
             result.add("@" + player.getName());
             result.add(player.getPlayer().getName());
         }
         return result;
     }
 
-    public List<String> getNames(boolean includeProxy) {
-        return getNames();
-    }
 
-    public String getName(Player player) {
-        PlayerName pn = pnm.getPlayer(player.getUniqueId());
+    public String getName(UUID uniqueId) {
+        PlayerName pn = pnm.getPlayer(uniqueId);
         return pn == null ? null : pn.getName();
-    }
-
-    public Player getPlayer(String name) {
-        PlayerName pn;
-        if (name.startsWith("@")) pn = pnm.getPlayer(name.substring(1));
-        else {
-            Player player = Bukkit.getPlayer(name);
-            if (player == null) return null;
-            pn = pnm.getPlayer(player.getUniqueId());
-        }
-        return pn == null ? null : pn.getPlayer();
     }
 
     public UUID getUniqueId(String name) {
