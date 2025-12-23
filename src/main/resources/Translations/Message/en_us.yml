@@ -1,8 +1,8 @@
 nickname:
   change:
     contains: "<red>The name contains invalid characters (only Korean, English letters, numbers, and underscores are allowed)</red>"
-    length: "<red>The name cannot exceed [max_length] characters</red>"
+    length: "<red>The name cannot exceed {max_length} characters</red>"
     duplicated: "<red>This name is already in use</red>"
     unavailable: "<red>This nickname is not available</red>"
-    success: "<green>Nickname changed successfully <gray>[previous] => [name]</gray></green>"
-    other: "<green>The user's nickname has been changed <gray>[previous] => [name]</gray></green>"
+    success: "<green>Nickname changed successfully <gray>{previous} => {name}</gray></green>"
+    other: "<green>The user's nickname has been changed <gray>{previous} => {name}</gray></green>"

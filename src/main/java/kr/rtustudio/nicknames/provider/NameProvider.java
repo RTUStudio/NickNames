@@ -1,8 +1,8 @@
-package com.github.nyaon08.rtustudio.nicknames.provider;
+package kr.rtustudio.nicknames.provider;
 
-import com.github.nyaon08.rtustudio.nicknames.NickNames;
-import com.github.nyaon08.rtustudio.nicknames.player.PlayerName;
-import com.github.nyaon08.rtustudio.nicknames.player.PlayerNameManager;
+import kr.rtustudio.nicknames.NickNames;
+import kr.rtustudio.nicknames.player.PlayerName;
+import kr.rtustudio.nicknames.player.PlayerNameManager;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Getter
 @RequiredArgsConstructor
-public class NameProvider implements kr.rtuserver.framework.bukkit.api.core.provider.name.NameProvider {
+public class NameProvider implements kr.rtustudio.framework.bukkit.api.core.provider.name.NameProvider {
 
     private final NickNames plugin;
     private final PlayerNameManager pnm;

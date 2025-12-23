@@ -1,12 +1,13 @@
-package com.github.nyaon08.rtustudio.nicknames.listeners;
+package kr.rtustudio.nicknames.listeners;
 
-import com.github.nyaon08.rtustudio.nicknames.NickNames;
-import com.github.nyaon08.rtustudio.nicknames.player.PlayerNameManager;
-import kr.rtuserver.framework.bukkit.api.listener.RSListener;
+import kr.rtustudio.framework.bukkit.api.listener.RSListener;
+import kr.rtustudio.nicknames.NickNames;
+import kr.rtustudio.nicknames.player.PlayerNameManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+@SuppressWarnings("unused")
 public class PlayerJoinQuit extends RSListener<NickNames> {
 
     private final PlayerNameManager pnm;
@@ -18,7 +19,7 @@ public class PlayerJoinQuit extends RSListener<NickNames> {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-       pnm.addPlayer(e.getPlayer());
+        pnm.addPlayer(e.getPlayer());
     }
 
     @EventHandler

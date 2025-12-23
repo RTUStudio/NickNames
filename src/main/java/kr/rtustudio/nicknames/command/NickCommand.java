@@ -1,12 +1,10 @@
-package com.github.nyaon08.rtustudio.nicknames.command;
+package kr.rtustudio.nicknames.command;
 
-import com.github.nyaon08.rtustudio.nicknames.NickNames;
-import com.github.nyaon08.rtustudio.nicknames.player.PlayerName;
-import com.github.nyaon08.rtustudio.nicknames.player.PlayerNameManager;
-import kr.rtuserver.framework.bukkit.api.command.RSCommand;
-import kr.rtuserver.framework.bukkit.api.command.RSCommandData;
-import kr.rtuserver.framework.bukkit.api.configuration.translation.message.MessageTranslation;
-import org.bukkit.Bukkit;
+import kr.rtustudio.framework.bukkit.api.command.RSCommand;
+import kr.rtustudio.framework.bukkit.api.command.RSCommandData;
+import kr.rtustudio.nicknames.NickNames;
+import kr.rtustudio.nicknames.player.PlayerName;
+import kr.rtustudio.nicknames.player.PlayerNameManager;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -22,31 +20,25 @@ public class NickCommand extends RSCommand<NickNames> {
     }
 
     @Override
-    public boolean execute(RSCommandData data) {
+    public Result execute(RSCommandData data) {
         if (data.length(2)) {
-            if (player() == null) {
-                chat().announce(message().getCommon(sender(), String.valueOf(MessageTranslation.ONLY_PLAYER)));
-                return true;
-            }
+            if (player() == null) return Result.ONLY_PLAYER;
 
             if (hasPermission(getPlugin().getName() + ".nickname.change")) {
                 PlayerName playerName = playerNameManager.getPlayer(player().getUniqueId());
-                System.out.println(data.args(1));
                 playerName.changeName(player(), data.args(1));
-                return true;
+                return Result.SUCCESS;
             }
 
         } else if (data.length(3) && hasPermission(getPlugin().getName() + ".nickname.change.other")) {
             UUID targetUuid = provider().getUniqueId(data.args(2));
-            if (targetUuid == null) {
-                return true;
-            }
+            if (targetUuid == null) return Result.NOT_FOUND_ONLINE_PLAYER;
             Player target = getPlugin().getServer().getPlayer(targetUuid);
             PlayerName playerName = playerNameManager.getPlayer(targetUuid);
             playerName.changeName(player(), target, data.args(1));
-            return true;
+            return Result.SUCCESS;
         }
-        return false;
+        return Result.FAILURE;
     }
 
     @Override

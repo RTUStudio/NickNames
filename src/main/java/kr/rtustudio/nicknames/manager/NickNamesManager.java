@@ -1,10 +1,10 @@
-package com.github.nyaon08.rtustudio.nicknames.manager;
+package kr.rtustudio.nicknames.manager;
 
-import com.github.nyaon08.rtustudio.nicknames.NickNames;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import kr.rtuserver.framework.bukkit.api.platform.JSON;
-import kr.rtuserver.framework.bukkit.api.storage.Storage;
+import kr.rtustudio.framework.bukkit.api.platform.JSON;
+import kr.rtustudio.framework.bukkit.api.storage.Storage;
+import kr.rtustudio.nicknames.NickNames;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.Nullable;
 

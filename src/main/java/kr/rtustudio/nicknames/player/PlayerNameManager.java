@@ -1,6 +1,6 @@
-package com.github.nyaon08.rtustudio.nicknames.player;
+package kr.rtustudio.nicknames.player;
 
-import com.github.nyaon08.rtustudio.nicknames.NickNames;
+import kr.rtustudio.nicknames.NickNames;
 import lombok.extern.java.Log;
 import org.bukkit.entity.Player;
 
